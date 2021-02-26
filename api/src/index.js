@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // require('./models/index')
 
 
-const anomaliesRoutes = require('../routes/anomalies.route')
+const anomaliesRoutes = require('./routes/anomalies.route')
 app.use('/api/anomalies', anomaliesRoutes)
 
 app.listen(port, function () {
