@@ -1,0 +1,24 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Traffic anomalies rest api",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vizzariscript/traffic-anomalies.git"
+  },
+  "author": "Ramiro Vizzari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vizzariscript/traffic-anomalies/issues"
+  },
+  "homepage": "https://github.com/vizzariscript/traffic-anomalies#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "json2csv": "^5.0.6"
+  }
+}
