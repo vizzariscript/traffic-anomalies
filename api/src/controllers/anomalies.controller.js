@@ -2,7 +2,20 @@ const { Parser } = require('json2csv');
 
 const getAll = async (req, res, next) => {
     res.status(200);
-    res.json({ OK: 'OK' });
+    res.json([
+        {
+            "id": 1,
+            "anomalie": "lorem ipsum 1",
+        },
+        {
+            "id": 2,
+            "anomalie": "lorem ipsum 2",
+        },
+        {
+            "id": 3,
+            "anomalie": "lorem ipsum 3",
+        }
+    ]);
 }
 
 const getCsvFile = async (req, res, next) => {
