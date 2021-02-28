@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Anomalies } from './Anomalies'
-import {anomaliesSelector} from './anomaliesSlice'
-import {anomaliesFetchingSelector} from './anomaliesSlice'
+import { anomaliesSelector } from './anomaliesSlice'
+import { anomaliesFetchingSelector } from './anomaliesSlice'
+import PropagateLoader from 'react-spinners/PropagateLoader'
 
 import {
   getAnomalies,
@@ -23,13 +24,15 @@ export function AnomaliesContainer() {
 
   if (isFetching) {
     return (
-      <h2>
-        Loading...
-      </h2>
+      <>
+        <div style={{ 'padding-left': '200px', 'padding-top': "120px" }}>
+          <PropagateLoader loading={true} />
+        </div>
+      </>
     )
   }
-  
+
   return (
-    <Anomalies anomalies={anomalies} downloadCsv={downloadCsvFile}/>
+    <Anomalies anomalies={anomalies} downloadCsv={downloadCsvFile} />
   );
 }

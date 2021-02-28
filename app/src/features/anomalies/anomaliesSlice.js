@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 const anomaliesSlice = createSlice({
   name: 'anomalies',
   initialState: {
@@ -23,6 +22,9 @@ export const getAnomalies = () => async dispatch => {
   dispatch(fetchAnomalies());
   // llamada a api const data = llama;
   const data = await getAllAnomalies();
+  //JUST FOR FUN
+  await new Promise(resolve => setTimeout(resolve, 2000));
+
   dispatch(setAnomalies(data))
 };
 
@@ -38,14 +40,23 @@ const getAllAnomalies = async () => {
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImludGVsbGlzaXRlX2lkIiwiaWF0IjoxNjE0NDgyMTY4LCJleHAiOjE2MTQ0OTY1Njh9.QBx1eLLK7VYwIT-0A002L4krAKutKT3SFBV47Ko6GuM'
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     redirect: 'follow', // manual, *follow, error
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
   });
-  console.log('response', response);
-  return response.json(); // parses JSON response into native JavaScript objects
+  if (!response.ok) {
+     if (response.status === 401) {
+       console.warn('unauthorized')
+     }
+     if (response.status === 500) {
+       //TODO
+     }
+    return []
+  }
+  return response.json();
 }
 
 const downloadCsvFile = async () => {
