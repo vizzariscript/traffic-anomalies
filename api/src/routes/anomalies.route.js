@@ -1,4 +1,5 @@
 const express = require('express')
+const auth = require('../common/jwt.auth')
 
 const {
     getAll,
@@ -7,7 +8,7 @@ const {
 
 const router = express.Router()
 
-router.get('/', getAll)
-router.get('/csvfile', getCsvFile)
+router.get('/', auth, getAll)
+router.get('/csvfile', auth, getCsvFile)
 
 module.exports = router
